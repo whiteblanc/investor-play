@@ -11,7 +11,7 @@ public class CryptoSimplePricesMapper {
 
     public CryptoSimplePricesResponse map(CoinMarketCapResponse src) {
 
-        Map<String, CryptoSimplePrice> out = src.data().entrySet().stream()
+        Map<String, CryptoSimplePriceDto> out = src.data().entrySet().stream()
                 .filter(e -> e.getKey() != null && e.getValue() != null)
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -22,12 +22,12 @@ public class CryptoSimplePricesMapper {
         return new CryptoSimplePricesResponse(src.status(), out);
     }
 
-    private CryptoSimplePrice mapCrypto(Crypto crypto) {
+    private CryptoSimplePriceDto mapCrypto(Crypto crypto) {
         Map<String, Quote> quote = crypto.quote();
         Quote usd = quote.get("USD");
         Double price = usd.price();
 
 
-        return new CryptoSimplePrice(crypto.id(), crypto.name(), crypto.symbol(), price);
+        return new CryptoSimplePriceDto(crypto.id(), crypto.name(), crypto.symbol(), crypto.last_updated(), price);
     }
 }

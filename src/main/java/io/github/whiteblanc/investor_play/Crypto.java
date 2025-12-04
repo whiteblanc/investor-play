@@ -1,5 +1,6 @@
 package io.github.whiteblanc.investor_play;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public record Crypto(
         Double self_reported_circulating_supply,
         Double self_reported_market_cap,
         Double tvl_ratio,
-        String last_updated,
+        Instant last_updated,
         Map<String, Quote> quote
 ) {
 }

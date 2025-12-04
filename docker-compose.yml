@@ -31,8 +31,25 @@ services:
     networks:
       - springnet
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "16543:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    restart: always
+    networks:
+      - springnet
+
 volumes:
   pgdata:
+  pgadmin-data:
 
 networks:
   springnet:
