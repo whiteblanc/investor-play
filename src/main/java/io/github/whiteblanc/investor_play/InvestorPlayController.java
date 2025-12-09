@@ -32,6 +32,6 @@ public class InvestorPlayController {
         Collection<CryptoSimplePrice> cryptoSimplePrices = values.stream()
                 .map(dto -> new CryptoSimplePrice(null, dto.id(), dto.symbol(), dto.price(), dto.last_updated()))
                 .toList();
-        cryptoRepo.saveAll(values);
+        cryptoRepo.saveAll(cryptoSimplePrices);
     }
 }

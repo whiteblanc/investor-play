@@ -8,6 +8,12 @@ import java.time.Instant;
 public class CryptoSimplePrice {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crypto_price_seq_gen")
+    @SequenceGenerator(
+            name = "crypto_price_seq_gen",
+            sequenceName = "crypto_simple_price_seq",
+            allocationSize = 1
+    )
     private Integer id;
 
     private Integer coinmarketcapId;
@@ -25,6 +31,7 @@ public class CryptoSimplePrice {
 
     public CryptoSimplePrice(Integer id, Integer coinmarketcapId, String symbol, Double price, Instant lastUpdated) {
         this.id = id;
+        this.coinmarketcapId = coinmarketcapId;
         this.symbol = symbol;
         this.price = price;
         this.lastUpdated = lastUpdated;
