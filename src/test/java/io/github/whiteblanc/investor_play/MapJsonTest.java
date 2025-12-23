@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 //@SpringBootTest
-@Disabled
+
 public class MapJsonTest {
 
     @Autowired
     ObjectMapper objectMapper;
 
+    @Disabled
     @Test
     public void testIt() throws JsonProcessingException {
         String json = "{\n" +
